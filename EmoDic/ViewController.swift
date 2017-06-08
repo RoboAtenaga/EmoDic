@@ -29,9 +29,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return emojiCell
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let emoji = emojis[indexPath.row]
+        performSegue(withIdentifier: "passEmoji", sender: emoji)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let dest = segue.destination as! DetailViewController
+        dest.emoji = sender as! String
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
